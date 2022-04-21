@@ -1,0 +1,16 @@
+nav{
+    height: 55px;
+    background-color: teal;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+img{
+    width: 25px;
+}
+
+ul{
+    text-decoration: none;
+    list-style-type: none;
+}

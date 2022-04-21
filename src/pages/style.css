@@ -1,0 +1,100 @@
+/* LOGIN PAGE */
+
+.login{
+    background-image: url('https://picsum.photos/1600/900');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px 0px rgb(0 0 0 / 75%);
+    width: 25%;
+    height: fit-content;
+    padding: 40px;
+    background-color: white;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.blog{
+    border: 1px solid teal;
+    border-radius: 50%;
+    background-color: rgb(5, 185, 185);
+    padding: 10px;
+    width: 100px;
+}
+.login-input{
+    width: 70%;
+    margin-bottom:10px;
+    padding: 10px;
+    border:1px solid lightgrey;
+}
+
+.login-input:hover{
+    border: 1px solid teal;
+}
+
+.login-btn{
+    background-color: teal;
+    color: white;
+    margin-top: 5px;
+    padding: 10px;
+    width: 76%;
+    border:none;
+    cursor: pointer;
+}
+.login-btn:hover,
+.blog-btn:hover{
+    background-color: lightgrey;
+    color: teal;
+    box-shadow: 0px 0px 3px 3px rgb(0 0 0 / 40%);
+}
+
+.new-blog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.new-blog h2{
+    color: teal;
+}
+
+.blog-form{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    /* border: 1px solid red; */
+
+}
+
+.blog-input{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightgrey;
+}
+.blog-input:hover{
+    border: 1px solid teal;
+}
+.blog-btn{
+    
+        background-color: teal;
+        color: white;
+        margin-top: 5px;
+        padding: 7px;  
+        border:none;
+        cursor: pointer; 
+}
