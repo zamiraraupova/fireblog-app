@@ -4,8 +4,9 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import NewBlog from './pages/NewBlog';
-
+import Profile from './pages/Profile';
 import './App.css';
+
 
 
 
@@ -19,8 +20,8 @@ function App() {
         <Route path='/login' element ={<Login/>}/>
         <Route path='/register' element ={<Register/>}/>
         <Route path='/newblog' element ={<NewBlog/>}/>
+        <Route path='/profile' element ={<Profile/>}/>
 
-        
         {/* <Route path='/about' element ={<About/>}/>
        
         <Route path='/details' element ={<Details/>}/> */}
