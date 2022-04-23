@@ -1,81 +1,76 @@
 import './style.css'
 import blog from '../assets/blog.png'
 
-import { useState, useEffect } from 'react';
-import firebase from '../helpers/firebase'
-import { getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database"
+import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useUserAuth } from '../contexts/AuthContext'
 
 function Register(){
     
-   const [alert, setAlert] = useState('')
-   const [input, setInput] = useState({
-       email: '',
-       password: '',
-   })
-   
-   const [inputList, setInputList] = useState([]);
+  //  const [input, setInput] = useState({
+  //      email: '',
+  //      password: '',
+  //      error: ''
+  //  })
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+    const { register } = useUserAuth()
+    let navigate = useNavigate()
 
-   let navigate = useNavigate()
 
- const handleChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value })
+ 
+  //  const handleChange = (e) => {
+  //   setInput({ ...input, [e.target.name]: e.target.value })
+  // }
+
+  const handleChangeEmail = (e)=>{
+    setEmail(e.target.value)
+  }
+  
+  const handleChangePassword = (e)=>{
+    setPassword(e.target.value)
   }
 
+  //  const handleRegister = async () => {
+  //       try{
+  //         await signUp(input.email, input.password)
+  //         setInput(input.error === '')
+  //         navigate('/')
+  //       }catch(err){
+  //         setInput(err.message)
+  //       }
+  //  }
 
-  
-  const handleSubmit=(e)=>{
-       e.preventDefault()
-       //if(input.email && input.password){
-         navigate('/dashboard')
-       //}
-          //else setAlert('Please enter your credentials')
+  const handleSignUp = async () => {
+    try {
+        await register(email, password)
+        setError("")
+        navigate("/dashboard")
 
-        if(input.id){
-        const db = getDatabase(firebase);
-        const userRef = ref(db, "login/" + input.id);
-        update(userRef, {email: input.email, password: input.password})
-       } else {
-        const db = getDatabase(firebase);
-        const userRef = ref(db, "login");
-        set(push(userRef), input);
-      }
-        
-   }
+    } catch (err) {
+        setError(err.message)
 
-   useEffect(()=>{
-    const db = getDatabase(firebase);
-    const userRef = ref(db, "login");
-    onValue(query(userRef), (snapshot) => {
-      const inputs = snapshot.val();
-      const inputArray = [];
-      for (let id in inputs) {
-        inputArray.push({id, ...inputs[id]})
-      }
-      setInputList(inputArray);
-    })
-  },[])
-    
-    
-
-    
+    }
+}
     
     return(
         
         <div className="login" >
             
                 
-            <form id="form" className="login-form" onSubmit={handleSubmit}>
+            <form id="form" className="login-form" onSubmit={handleSignUp}>
                 <img className='blog' src={blog} alt={blog}/>
                  <h2 style={{color:'teal'}}> Register </h2>
-  
-                 <input className='login-input'type="email" placeholder="Email" name='email' value={input.email} onChange={handleChange}/>
-                 <input className='login-input'type="password" placeholder="Password" name='password' value={input.password} onChange={handleChange}/>  
+                  
+                  {error}
+                 
+                 <input className='login-input'type="email" placeholder="Email" name='email' onChange={handleChangeEmail}/>
+                 <input className='login-input'type="password" placeholder="Password" name='password' onChange={handleChangePassword}/>  
 
                 
-                 <button className="login-btn" onClick={()=> setInput({email:'', password:''})}>Register</button>
-                 <p style={{color:'red'}}>{alert}</p>
+                 <button className="login-btn" >Register</button>
+      
              </form>
         
         </div>
