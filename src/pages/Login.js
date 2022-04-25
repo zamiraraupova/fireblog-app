@@ -3,18 +3,17 @@ import blog from '../assets/blog.png'
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../contexts/AuthContext';
 
 
 const Login=()=>{
     
-  //  const [alert, setAlert] = useState('')
    const [input, setInput] = useState({
        email: '',
        password: '',
    })
-   
-  //  const [inputList, setInputList] = useState([]);
-
+   const [error, setError] = useState('')
+   const {user, login} = useUserAuth()
    let navigate = useNavigate()
 
  const handleChange = (e) => {
@@ -23,13 +22,15 @@ const Login=()=>{
 
 
   
-  const handleSubmit=(e)=>{
+  const handleSubmit = async (e) => {
        e.preventDefault()
-       //if(input.email && input.password){
-         navigate('/dashboard')
-       //}
-          //else setAlert('Please enter your credentials')
-        
+      try{
+        await login(input.email, input.password)
+        setError('')
+        navigate('/dashboard')
+      }catch(err){
+        setError(err.message)
+      }   
    }
     
  
@@ -46,8 +47,8 @@ const Login=()=>{
                  <input className='login-input'type="password" placeholder="Password" name='password' onChange={handleChange}/>  
 
                 
-                 <button className="login-btn" onClick={()=> setInput({email:'', password:''})}>Login</button>
-                 <p style={{color:'red'}}>{alert}</p>
+                 <button className="login-btn" >Login</button>
+                 <p style={{color:'red'}}>{error}</p>
              </form>
         
         </div>

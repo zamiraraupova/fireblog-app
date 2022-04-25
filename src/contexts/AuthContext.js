@@ -28,7 +28,7 @@ export function UserAuthProvider({ children }){
         })
     }, [])
 
-    console.log(user)
+    //console.log(user)
 
     return(
         <userAuthContext.Provider value = {{user, register, login, logout}} > {children} </userAuthContext.Provider>
