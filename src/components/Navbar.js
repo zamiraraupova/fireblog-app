@@ -33,11 +33,18 @@ function Navbar() {
           <Link  to="/login" style={{textDecoration: 'none', color: 'black'}} > Login </Link>
           <Link  to="/register" style={{textDecoration: 'none', color: 'black'}} > Register  </Link>
         </div>
+        
+        <div className={dropdown ? 'clicked' : 'menu'}
+              onClick={handleClick}>
+            <li><Link to="/profile"> Profile </Link> </li>
+             <li><Link to="/newblog">New Blog</Link></li>
+             <li><Link to="/logout">Logout</Link></li> 
+         </div>
+            
             
             {/* <li><Link to="/about"> </Link></li>
             <li><Link to="/details"> </Link> </li>        
-            <li><Link to="/newblog"></Link></li>
-            <li><Link to="/profile"> </Link> </li>
+           
             <li><Link to="/register"></Link></li>
             <li><Link to="/updateblog"> </Link> </li> */}
                

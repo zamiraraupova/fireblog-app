@@ -6,6 +6,8 @@ function Dashboard({newInput, addInput}) {
   console.log(newInput)
   return (
     <div> 
+      You are in DashBoard page
+        
         {/* {newInput.map(i=>
         <div>
           <div>{i.title}</div> 
