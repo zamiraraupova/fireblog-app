@@ -1,6 +1,7 @@
 import { set } from 'firebase/database';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import {FaUserAlt} from 'react-icons/fa'
 
 import cw from '../assets/cw.jpeg';
 import './style.css'
@@ -26,7 +27,7 @@ function Navbar() {
         
         <ul >  
         
-        <button onClick={handleClick}  >icon</button> 
+        <FaUserAlt onClick={handleClick} className='user-icon'style={{}}/> 
 
         <div className={dropdown ? 'clicked' : 'menu'}
               onClick={handleClick}>
@@ -37,7 +38,7 @@ function Navbar() {
         <div className={dropdown ? 'clicked' : 'menu'}
               onClick={handleClick}>
             <li><Link to="/profile"> Profile </Link> </li>
-             <li><Link to="/newblog">New Blog</Link></li>
+             <li><Link to="/new-blog">New Blog</Link></li>
              <li><Link to="/logout">Logout</Link></li> 
          </div>
             

@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import { fireEvent } from '@testing-library/react'
+
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import blog from '../assets/blog.png'
-import Dashboard from './Dashboard'
+import { getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database"
+import firebase from '../helpers/firebase';
 
-function NewBlog() {
+
+function NewBlog({newInput, setNewInput}) {
     let navigate = useNavigate()
     
     const [input, setInput] = useState({
@@ -12,7 +16,7 @@ function NewBlog() {
       context:''
     })
    
-    const [newInput, setNewInput] = useState([])
+    
     
     const handleChangle =(e)=>{
       setInput({...input, [e.target.name]: e.target.value} )
@@ -21,16 +25,20 @@ function NewBlog() {
     const NewBlogSubmit=(e)=>{
       e.preventDefault()
       //console.log(input)
-      addInput(input)
-      // setInput({  title:'', imgUrl:'', context:''})
-      // navigate('/dashboard')
-      
-
+    if(input.id){
+      const db = getDatabase(firebase);
+      const useRef = ref(db, 'data/' + input.id);
+      update(useRef, {title: input.title, imgUrl: input.imgUrl, context: input.title})
+    }else{
+      const db = getDatabase(firebase);
+      const userRef = ref(db, 'data')
+      set(push(userRef), input)
+    }
+    setNewInput([...newInput, input])
+      navigate('/dashboard')
   }
+ 
   
-  const addInput = (item) =>{
-    setNewInput([...newInput, item])
-  }
 
   console.log(input)
   console.log(newInput)
@@ -44,14 +52,14 @@ function NewBlog() {
         <h2>New Blog</h2>
 
         <form className="blog-form" onSubmit={NewBlogSubmit}>
-            <input className='blog-input' type='text' name='title' placeholder='Title *' onChange={handleChangle} />
-            <input className='blog-input' type='text' name='imgUrl' placeholder='Image URL *' onChange={handleChangle} />
-            <textarea className='blog-input' id="comments" name="context" cols="50" rows="10" placeholder='Content *' onChange={handleChangle} />
+            <input className='blog-input' type='text' name='title' placeholder='Title *' onChange={handleChangle} value={input.title}/>
+            <input className='blog-input' type='text' name='imgUrl' placeholder='Image URL *' onChange={handleChangle} value={input.imgUrl}/>
+            <textarea className='blog-input' id="comments" name="context" cols="50" rows="10" placeholder='Content *' onChange={handleChangle} value={input.context}/>
 
             <button className='blog-btn'>Submit</button>
         </form>
 
-           <Dashboard addInput={addInput} newInput={newInput}/>
+           
     </div>
   )
 }

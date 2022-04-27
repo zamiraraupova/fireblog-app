@@ -109,3 +109,50 @@
     width: 25%;
     height: fit-content;
 }
+
+/* DASHBOARD */
+
+.card{
+    /* border: 1px solid black; */
+    height: 250px;
+    width: 250px; 
+    margin: 35px;
+    box-shadow: 10px 10px 20px 0px rgb(0 0 0 / 25%);
+    cursor: pointer; 
+}
+.card-name{
+    /* border: 1px solid red; */
+    height: 30px;
+    width: 236px;
+    /* display: flex;
+    justify-content: flex-start; */
+    align-items:center;
+    padding-left: 15px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: teal;
+    background-color: rgba(182, 182, 182, 0.739);
+   
+}
+.card-img{
+    /* border: 1px solid blue; */
+    width: 100%;
+}
+.card-text{
+    /* border: 1px solid green; */
+    height: fit-content;
+    width: 236px;
+    /* display: flex;
+    justify-content: flex-start; */
+    align-items: center;
+    padding-left: 15px;
+    background-color: rgba(182, 182, 182, 0.739);
+}
+
+.dashboard{
+    /* border: 1px solid green; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+span{
+    margin: 10px;
+}

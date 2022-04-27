@@ -35,3 +35,10 @@ ul{
     background-color: lightgrey;
     
 }
+.user-icon{
+    background-color : white;
+     border-radius: 50px;
+      height:20px;
+      width:20px;
+      cursor:pointer;
+}
