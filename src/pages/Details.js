@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { FaRegHeart, FaRegCommentAlt } from 'react-icons/fa'
-import {  useNavigate } from 'react-router-dom'
+import {  useNavigate, useLocation } from 'react-router-dom'
 import { getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database"
 import firebase from '../helpers/firebase';
 import { useUserAuth } from '../contexts/AuthContext'
@@ -10,6 +10,11 @@ function Details({input, setInput, newInput, setNewInput}) {
     const [count, setCount] = useState(0)
 
     let navigate = useNavigate()
+    let location = useLocation()
+
+    const cardId = location.state['card']
+    console.log(cardId)
+
     const heartCount = () => {
         setCount(count + 1)
       }
@@ -26,6 +31,8 @@ function Details({input, setInput, newInput, setNewInput}) {
         })
         navigate('/update-blog')
       }
+
+      
   
   return (
     <div className='details'>

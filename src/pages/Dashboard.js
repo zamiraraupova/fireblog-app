@@ -36,7 +36,7 @@ function Dashboard({input, setInput, newInput, setNewInput }) {
       // const detailData = newInput.filter(item => item.id === id) 
       // setDetail(detailData[0])
    
-      navigate('/details')
+      navigate('/details', {state:{card: id}})
   }
 
   const heartCount = () => {
@@ -52,7 +52,7 @@ function Dashboard({input, setInput, newInput, setNewInput }) {
             <div className='card-text'>{i.context}</div>
             <div> user.email </div>
             <div>
-          <span onChange={heartCount}><FaRegHeart /> {count}</span>
+          <span onChange={heartCount}> <FaRegHeart /> {count}</span>
           <span><FaRegCommentAlt /></span>
         </div>
           </div>)}
