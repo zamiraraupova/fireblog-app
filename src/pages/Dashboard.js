@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { FaRegHeart, FaRegCommentAlt } from 'react-icons/fa'
 // get data from firebase realtime database
 
-function Dashboard({ newInput, setNewInput }) {
+function Dashboard({input, setInput, newInput, setNewInput }) {
   // console.log(newInput)
   const { user } = useUserAuth()
   const [count, setCount] = useState(0)
+  const [detail, setDetail] = useState('')
+
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function Dashboard({ newInput, setNewInput }) {
     const userRef = ref(db, "data");
     onValue(query(userRef), (snapshot) => {
       const inputs = snapshot.val();
-      console.log(inputs, '<<<')
+      // console.log(inputs, '<<<')
       const inputArray = [];
       for (let id in inputs) {
         // console.log(id, '<<<<')
@@ -29,9 +31,14 @@ function Dashboard({ newInput, setNewInput }) {
     })
   }, [])
 
-  const handleCardClick = () => {
-    navigate('/details')
+  const handleCardClick = (id) => {
+    
+      // const detailData = newInput.filter(item => item.id === id) 
+      // setDetail(detailData[0])
+   
+      navigate('/details')
   }
+
   const heartCount = () => {
     setCount(count + 1)
   }
@@ -50,7 +57,7 @@ function Dashboard({ newInput, setNewInput }) {
         </div>
           </div>)}
          
-       
+       <div>{detail}</div>
       
       {/* <div> user.email </div>
         <div><FaRegHeart/></div> */}

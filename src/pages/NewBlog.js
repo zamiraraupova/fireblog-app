@@ -7,17 +7,9 @@ import { getDatabase, onValue, push, query, ref, remove, set, update } from "fir
 import firebase from '../helpers/firebase';
 
 
-function NewBlog({newInput, setNewInput}) {
+function NewBlog({input, setInput, newInput, setNewInput}) {
     let navigate = useNavigate()
-    
-    const [input, setInput] = useState({
-      title:'',
-      imgUrl:'',
-      context:''
-    })
-   
-    
-    
+ 
     const handleChangle =(e)=>{
       setInput({...input, [e.target.name]: e.target.value} )
     }

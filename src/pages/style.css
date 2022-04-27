@@ -156,3 +156,28 @@
 span{
     margin: 10px;
 }
+
+/* DETAILS PAGE */
+
+.details{
+    width: 80%; 
+    margin: auto;
+    margin-top: 100px;
+    box-shadow: 10px 10px 20px 0px rgb(0 0 0 / 25%);
+    
+}
+.detail-card-img{
+    width: 100%;
+}
+
+.detail-card-name{
+    text-align: center;
+    font-size: xx-large;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: teal;
+}
+.detail-card-text{
+    align-items: center;
+    padding-left: 15px;
+    font-size: larger;
+}

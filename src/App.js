@@ -8,11 +8,17 @@ import Profile from './pages/Profile';
 import Details from './pages/Details';
 import { useState } from 'react';
 import './App.css';
+import UpdateBlog from './pages/UpdateBlog';
 
 
 
 
 function App() {
+  const [input, setInput] = useState({
+    title:'',
+    imgUrl:'',
+    context:''
+  })
   const [newInput, setNewInput] = useState([])
 
   return (
@@ -21,11 +27,12 @@ function App() {
       
       <Routes>
 
-        <Route path='/dashboard' element={<Dashboard newInput={newInput} setNewInput={setNewInput}/>} /> 
+        <Route path='/dashboard' element={<Dashboard input={input} setInput={setInput} newInput={newInput} setNewInput={setNewInput}/>} /> 
         <Route path='/login' element ={<Login/>}/>
         <Route path='/register' element ={<Register/>}/>
-        <Route path='/new-blog' element ={<NewBlog newInput={newInput} setNewInput={setNewInput} />}/>
-        <Route path='/details' element ={<Details newInput={newInput} setNewInput={setNewInput} />}/>
+        <Route path='/new-blog' element ={<NewBlog input={input} setInput={setInput} newInput={newInput} setNewInput={setNewInput} />}/>
+        <Route path='/details' element ={<Details input={input} setInput={setInput} newInput={newInput} setNewInput={setNewInput} />}/>
+        <Route path='/update-blog' element ={<UpdateBlog input={input} setInput={setInput} newInput={newInput} setNewInput={setNewInput} />}/>
 
         <Route path='/profile' element ={<Profile/>}/>
 
