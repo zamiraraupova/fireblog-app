@@ -11,7 +11,7 @@ function Dashboard({input, setInput, newInput, setNewInput }) {
   // console.log(newInput)
   const { user } = useUserAuth()
   const [count, setCount] = useState(0)
-  const [detail, setDetail] = useState('')
+  const [countComments, setCountComments] = useState(0)
 
   let navigate = useNavigate()
 
@@ -31,39 +31,35 @@ function Dashboard({input, setInput, newInput, setNewInput }) {
     })
   }, [])
 
-  const handleCardClick = (id) => {
-    
-      // const detailData = newInput.filter(item => item.id === id) 
-      // setDetail(detailData[0])
-   
-      navigate('/details', {state:{card: id}})
-  }
-
   const heartCount = () => {
     setCount(count + 1)
   }
+  const commentsCount = () => {
+    setCountComments(count + 1)
+  }
+  
   return (
     <div className='dashboard'>
+      <div className='logo'><h1>Dashboard</h1></div>
       
+      <div className='card-container'>
         {newInput.map(i =>
-          <div className='card' onClick={handleCardClick} key={i.id}>
+          <div className='card' onClick={()=>navigate('/details', {state:{card: i.id}})} key={i.id}>
             <img src={i.imgUrl} className='card-img' />
             <div className='card-name'>{i.title}</div>
             <div className='card-text'>{i.context}</div>
             <div> user.email </div>
-            <div>
-          <span onChange={heartCount}> <FaRegHeart /> {count}</span>
-          <span><FaRegCommentAlt /></span>
-        </div>
+          
+          <div className='likes'>      
+             <span onChange={heartCount} > <FaRegHeart /> {count}</span>
+             <span onChange={commentsCount} style={{marginRight: '5px'}}> <FaRegCommentAlt />{countComments}</span>
+          </div>
+          
           </div>)}
-         
-       <div>{detail}</div>
-      
-      {/* <div> user.email </div>
-        <div><FaRegHeart/></div> */}
-
-
-
+          
+      </div> 
+    
+    
     </div>
   )
 }

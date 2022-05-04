@@ -8,26 +8,47 @@ function UpdateBlog({input, setInput, newInput, setNewInput}) {
 
         let navigate = useNavigate()
      
-        const handleChangle =(e)=>{
+        const handleChange =(e)=>{
           setInput({...input, [e.target.name]: e.target.value} )
         }
     
-        const UpdateBlogSubmit=(e)=>{
+        // function updateBlog(id, data) {
+        //     const db = getDatabase();
+        //     // const newUserKey=push(child(ref(db),"blogs/")).key;
+        //     const updates={};
+        //     updates["data/"+ input.id] = data;
+        //     return update(ref(db),updates)
+        //   }
+
+        const UpdateBlogSubmit=(e, data)=>{
           e.preventDefault()
           //console.log(input)
-        if(input.id){
+          
+         if(input.id){
           const db = getDatabase(firebase);
-          const useRef = ref(db, 'data/' + input.id);
-          update(useRef, {title: input.title, imgUrl: input.imgUrl, context: input.title})
+          const updates={};
+          updates["data/"+ input.id] = data;
+          update(ref(db),updates)
         }else{
           const db = getDatabase(firebase);
           const userRef = ref(db, 'data')
           set(push(userRef), input)
+          //console.log(userRef)
         }
-        setNewInput([...newInput, input])
+        // if(input.id){
+        //   const db = getDatabase(firebase);
+        //   const useRef = ref(db, 'data/' + input.id);
+        //   update(useRef, {title: input.title, imgUrl: input.imgUrl, context: input.title})
+        // }else{
+        //   const db = getDatabase(firebase);
+        //   const userRef = ref(db, 'data')
+        //   set(push(userRef), input)
+        //   //console.log(userRef)
+        //}
           navigate('/dashboard')
       }
-     
+      //console.log(input)
+
     return (
         <div className='new-blog'>
 
@@ -38,9 +59,9 @@ function UpdateBlog({input, setInput, newInput, setNewInput}) {
             <h2>Update Blog</h2>
 
             <form className="blog-form" onSubmit={UpdateBlogSubmit}>
-                <input className='blog-input' type='text' name='title' placeholder='Title *' onChange={handleChangle} value={input.title} />
-                <input className='blog-input' type='text' name='imgUrl' placeholder='Image URL *' onChange={handleChangle} value={input.imgUrl} />
-                <textarea className='blog-input' id="comments" name="context" cols="50" rows="10" placeholder='Content *' onChange={handleChangle} value={input.context} />
+                <input className='blog-input' type='text' name='title' placeholder='Title *' onChange={handleChange} value={input.title} />
+                <input className='blog-input' type='text' name='imgUrl' placeholder='Image URL *' onChange={handleChange} value={input.imgUrl} />
+                <textarea className='blog-input' id="comments" name="context" cols="50" rows="10" placeholder='Content *' onChange={handleChange} value={input.context} />
 
                 <button className='blog-btn'>Update</button>
             </form>
