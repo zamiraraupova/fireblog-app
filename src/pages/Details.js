@@ -8,6 +8,7 @@ import { useUserAuth } from '../contexts/AuthContext'
 
 function Details({input, setInput, newInput, setNewInput}) {
     const [count, setCount] = useState(0)
+    const [countComments, setCountComments] = useState(0)
 
     let navigate = useNavigate()
     let location = useLocation()
@@ -17,6 +18,9 @@ function Details({input, setInput, newInput, setNewInput}) {
 
     const heartCount = () => {
         setCount(count + 1)
+      }
+      const commentsCount = () => {
+        setCountComments(count + 1)
       }
 
       const handleDelete = (id) => {
@@ -45,8 +49,8 @@ function Details({input, setInput, newInput, setNewInput}) {
           <div className='detail-card-name'>{filteredCardData.title}</div> 
           <div className='detail-card-text'>{filteredCardData.context}</div>
         
-         <span onChange={heartCount}><FaRegHeart /> {count}</span>
-        <span><FaRegCommentAlt /></span>
+         <span onClick={heartCount}> <FaRegHeart /> {count}</span>
+         <span onClick={commentsCount} style={{marginRight: '5px'}}> <FaRegCommentAlt />{countComments}</span>
            
         </div>
 

@@ -38,21 +38,22 @@ function Navbar() {
         <ul >  
         
         <FaUserAlt onClick={handleClick} className='user-icon'style={{}}/> 
-        {/* {user?.email ? ( */}
-        <div className={dropdown ? 'clicked' : 'menu'}
-              onClick={handleClick}>
-          <Link  to="/login" style={{textDecoration: 'none', color: 'black'}} > Login </Link>
-          <Link  to="/register" style={{textDecoration: 'none', color: 'black'}} > Register  </Link>
-        </div>
-        {/* ) : ( */}
-        <div className={dropdown ? 'clicked' : 'menu'}
-              onClick={handleClick}>
-            <li><Link to="/profile"> Profile </Link> </li>
-             <li><Link to="/new-blog">New Blog</Link></li>
-             <li><Link to="/logout" onClick={handleLogOut}>Logout</Link></li> 
-         </div>
-         {/* )   
-        }    */}
+        {user?.email ? (
+         <div className={dropdown ? 'clicked' : 'menu'}
+         onClick={handleClick}>
+       <li><Link to="/profile"> Profile </Link> </li>
+        <li><Link to="/new-blog">New Blog</Link></li>
+        <li><Link to="/logout" onClick={handleLogOut}>Logout</Link></li> 
+    </div>
+        ) : (
+      
+          <div className={dropdown ? 'clicked' : 'menu'}
+          onClick={handleClick}>
+      <Link  to="/login" style={{textDecoration: 'none', color: 'black'}} > Login </Link>
+      <Link  to="/register" style={{textDecoration: 'none', color: 'black'}} > Register  </Link>
+    </div>
+         )   
+        }   
             {/* <li><Link to="/about"> </Link></li>
             <li><Link to="/details"> </Link> </li>        
            

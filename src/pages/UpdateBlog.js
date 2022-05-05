@@ -1,4 +1,6 @@
 import React from 'react'
+import { useEffect} from 'react';
+
 import { useNavigate } from 'react-router-dom'
 import blog from '../assets/blog.png'
 import { getDatabase, onValue, push, query, ref, remove, set, update } from "firebase/database"
@@ -8,7 +10,7 @@ function UpdateBlog({input, setInput, newInput, setNewInput}) {
 
         let navigate = useNavigate()
      
-        const handleChange =(e)=>{
+        const handleChange =(e) => {
           setInput({...input, [e.target.name]: e.target.value} )
         }
     
@@ -33,7 +35,7 @@ function UpdateBlog({input, setInput, newInput, setNewInput}) {
           const db = getDatabase(firebase);
           const userRef = ref(db, 'data')
           set(push(userRef), input)
-          //console.log(userRef)
+          console.log(userRef)
         }
         // if(input.id){
         //   const db = getDatabase(firebase);
@@ -49,6 +51,21 @@ function UpdateBlog({input, setInput, newInput, setNewInput}) {
       }
       //console.log(input)
 
+    //   useEffect(() => {
+    //     const db = getDatabase(firebase);
+    //     const userRef = ref(db, "data");
+    //     onValue(query(userRef), (snapshot) => {
+    //       const inputs = snapshot.val();
+    //       // console.log(inputs, '<<<')
+    //       const inputArray = [];
+    //       for (let id in inputs) {
+    //         // console.log(id, '<<<<')
+    
+    //         inputArray.push({ id, ...inputs[id] })
+    //       }
+    //       setNewInput(inputArray);
+    //     })
+    //   }, [])
     return (
         <div className='new-blog'>
 

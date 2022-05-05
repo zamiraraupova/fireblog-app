@@ -9,7 +9,7 @@ import { FaRegHeart, FaRegCommentAlt } from 'react-icons/fa'
 
 function Dashboard({input, setInput, newInput, setNewInput }) {
   // console.log(newInput)
-  const { user } = useUserAuth()
+  const { user } = useUserAuth();
   const [count, setCount] = useState(0)
   const [countComments, setCountComments] = useState(0)
 
@@ -48,7 +48,7 @@ function Dashboard({input, setInput, newInput, setNewInput }) {
             <img src={i.imgUrl} className='card-img' />
             <div className='card-name'>{i.title}</div>
             <div className='card-text'>{i.context}</div>
-            <div> user.email </div>
+            <div> {user.email} </div>
           
           <div className='likes'>      
              <span onChange={heartCount} > <FaRegHeart /> {count}</span>
